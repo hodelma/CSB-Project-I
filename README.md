@@ -1,6 +1,6 @@
 # Cyber Security Project I
-<br>
-
+This web application has 5 different flaws from the OWASP top ten list security flaws on purpose. The flaws are pointed out in the project and the steps to fix them are provided as well.
+<br><br>
 ## Installation instructions
 *Please, make sure, that you have python3 installed. The app is developed in Python 3.12.3*
 <br><br>
