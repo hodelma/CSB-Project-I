@@ -7,7 +7,7 @@ This web application has 5 different flaws from the OWASP top ten list security 
 <br>
 
 > [!IMPORTANT]
-> Please make sure, that you have *python3* installed. The app is developed in Python 3.12.3
+> Please make sure, that you have *python3* and *Poetry* installed. See instructions for Poetry installation [here](https://python-poetry.org/docs/)
 <br><br>
 
 **1. Clone the repository:**
@@ -41,12 +41,14 @@ sqlite3 database.db < init.sql
 ```
 
 
-**6. Execute flask-app:**
+**6. Execute flask-app:** <br>
+
+Normal mode:
 ```bash
 flask run
 ```
 
-**7. Executing the app in debug mode (optional):**
+Debug mode (optional):
 ```bash
 flask run --debug
 ```
