@@ -5,6 +5,8 @@
 *Please, make sure, that you have python3 installed. The app is developed in Python 3.12.3*
 <br><br>
 
+The project operates with SQLite, so there is no need for setting up your own PostgreSQL or any other database. The db is initialized automatically.
+
 1. Clone the repository:
 ```bash
 git clone https://github.com/hodelma/Reseptisovellus.git
