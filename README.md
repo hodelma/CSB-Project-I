@@ -24,7 +24,7 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-4. Install ```flask```library:
+4. Install ```flask``` library:
 ```bash
 pip install flask
 ```
