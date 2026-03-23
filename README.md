@@ -13,16 +13,17 @@ This web application has 5 different flaws from the OWASP top ten list security 
 **1. Clone the repository:**
 ```bash
 git clone https://github.com/hodelma/CSB-Project-I.git
+cd CSB-Project-I
 ```
 
 
-**2. Create virtual environment (venv):**
+**2. Create a virtual environment (venv):**
 ```bash
 python3 -m venv venv
 ```
 
 
-**3. Enable venv:**
+**3. Activate venv:**
 ```bash
 source venv/bin/activate
 ```
