@@ -1,4 +1,4 @@
-# Cyber Security Project I
+# Cyber Security Base Project I
 <br>
 This web application has 5 different flaws from the OWASP top ten list security flaws on purpose. The flaws are pointed out in the project and the steps to fix them are provided as well.
 <br><br>
