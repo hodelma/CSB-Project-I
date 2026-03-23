@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+    
+<h1>Log in</h1>
+
+<form action="/user_login" method="post">
+  <p>
+    <label for="username">Username:</label> <br />
+    <input type="text" name="username" id="username" value="{{ username or '' }}" required/>
+  </p>
+  <p>
+    <label for="password">Password:</label> <br />
+    <input type="password" name="password" id="password" required/>
+  </p>
+  <input type="submit" value="Log in" class="btn">
+</form>
+
+<hr />
+<p>
+  <a href="/" class="btn-menu">Back to menu</a>
+</p>
+
+{% endblock %}

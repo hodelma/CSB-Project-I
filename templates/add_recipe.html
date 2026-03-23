@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %} Add a recipe {% endblock %}
+
+{% block content %}
+
+<a href="/" class="btn-menu">Back to menu</a>
+
+  <form action="/add_recipe" method="post">
+
+    <p>
+      <b><label for="title">Recipe title:</label></b> <br /> <br>
+    <input type="text" name="title" id="title" size="74" maxlength="100" value="{{ title }}" required />
+    </p>
+
+    <br>
+
+  <p>
+    <b>Choose the dish type:</b>
+
+    <br>
+    <br>
+
+    {% for t in types %}
+    <div class="form">
+
+      <input type="radio" name="type" id="type{{ t.id }}" value="{{ t.id }}" required
+      {% if t.id == type %}
+      checked
+      {% endif %}>
+      <label for="type{{ t.id }}">{{ t.title }}</label>
+      </div>
+      
+    {% endfor %}
+  </p>
+
+  <br>
+
+  <p>
+    <b>Choose the diet preferences for the dish (optional):</b>
+
+    <br>
+    <br>
+
+    {% for diet in diets %}
+    <div class="form">
+
+      <input type="checkbox" name="diet" id="diet{{ diet.id }}" value="{{ diet.id }}"
+      {% if diet.id|string in diets_id %}
+      checked
+      {% endif %}>
+      <label for="diet{{ diet.id }}">{{ diet.title }}</label>
+      </div>
+
+    {% endfor %}
+  </p>
+
+    <br>
+    
+    <p>
+      <b><label for="instructions">Write your recipe:</label></b> <br /> <br>
+      <textarea name="instructions" placeholder="Write your recipe's instructions here..."
+      id="instructions" rows="10" cols="70" maxlength="4500" required>{{ instructions }}</textarea>
+    </p>
+
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}" />
+    <input type="submit" value="Publish recipe" class="btn">
+  </form>
+
+{% endblock %}

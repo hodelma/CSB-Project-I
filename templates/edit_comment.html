@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %} Edit comment {% endblock %}
+
+{% block content %}
+
+<form action="/edit_comment/{{ comment.id }}" method="post">
+<p>
+<label for="comment">Your comment:</label> <br />
+<textarea name="comment" id="comment" rows="10" cols="70" minlength="10" maxlength="2000" required>
+{% if comment %}{{ comment.comment_text }}{% endif %}</textarea>
+</p>
+
+  <p>Edit rating:</p>
+  {% for i in range(1, 6) %}
+  <input type="radio" name="rating" id="rating{{i}}" value="{{i}}" 
+
+  {% if comment and comment.rating == i %}
+  checked
+  {% endif %}required/>
+
+  <label for="rating{{i}}">{{i}}</label>
+  {% endfor %}
+  </p>
+
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}" />
+  <input type="submit" value="Finish editing" class="btn">
+
+  <p>
+    <a href="/show_comments/{{ recipe_id }}" class="btn">Back</a>
+  </p>
+</form>
+
+{% endblock %}

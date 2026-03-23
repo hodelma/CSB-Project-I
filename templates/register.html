@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %} Create a new account {% endblock %}
+
+{% block content %}
+
+<h1>Create a new account</h1>
+
+<form action="/create_account" method="post">
+
+  <p>
+    <label for="username">Username:</label> <br />
+    <input type="text" name="username" id="username" value="{{ username or '' }}" maxlength="15" required/>
+  </p>
+
+  <p>
+    <label for="password1">Password:</label> <br />
+    <input type="password" name="password1" id="password1" minlength="8" maxlength="50" required/>
+  </p>
+
+  <p>
+    <label for="password2">Repeat password:</label> <br />
+    <input type="password" name="password2" id="password2" minlength="8" maxlength="50" required/>
+  </p>
+
+  <input type="submit" value="Create account" class="btn">
+</form>
+
+<br>
+
+<p>
+  <a href="/" class="btn-menu">Back to menu</a>
+</p>
+
+<br>
+
+{% endblock %}

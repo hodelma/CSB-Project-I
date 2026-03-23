@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %} Recipeland {% endblock %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+
+<p>In this app, you can share your favorite recipes and rate other users' recipes.</p>
+<p>You can also comment on other recipes and let people know your thoughts!</p>
+
+<br>
+<br>
+
+<div class="top5-section">
+<h2>Top 5 Recipes 🏆</h2>
+<br>
+
+{% if top_recipes %}
+
+    {% for recipe in top_recipes %}
+
+        <b><a href="/recipe/{{ recipe.id }}">{{ recipe.title }}</a></b>
+        ({{ recipe.average_rating|round(1) }} ★)
+
+        <p>
+        <small>From user: <a href="/user/{{ recipe.user_id }}">{{ recipe.username }}</a></small>
+        </p>
+        <br>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>There are no available recipes.</p>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

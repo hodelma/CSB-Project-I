@@ -1,0 +1,239 @@
+{% extends "layout.html" %}
+
+{% block title %} Browse recipes {% endblock %}
+
+{% block content %}
+
+<a href="/" class="btn-menu">Back to menu</a>
+
+{% if recipe %}
+
+<br>
+<br>
+
+<h1>{{ recipe.title }}</h1>
+
+{% if average_rating %}
+
+<p>
+Average rating: {{ average_rating|round(1) }} ({{ ratings_amount }} ratings)
+</p>
+
+{% else %}
+
+<p>
+No ratings yet.
+</p>
+
+{% endif %}
+
+<p>
+From user: <a href="/user/{{ recipe.user_id }}">{{ recipe.username }}</a> ({{ recipe.sent_at }})
+</p>
+
+<p>
+  {% if recipe.type_title and recipe.diets %}
+
+    <i>{{ recipe.type_title }}, {{ recipe.diets }}</i>
+
+  {% else %}
+
+    <i>{{ recipe.type_title }}</i>
+    
+  {% endif %}
+</p>
+
+<p class="recipe-instructions">
+  {{ recipe.instructions | show_lines }}
+</p>
+
+{% if recipe.user_id == session.user_id %}
+
+<p>
+<a href="/edit_mode/{{ recipe.id }}" class="btn-edit">Edit recipe</a>
+<a href="/remove_mode/{{ recipe.id }}" class="btn-remove">Remove recipe</a>
+</p>
+
+{% endif %}
+
+{% if session.user_id %}
+
+<form action="/add_comment" method="post">
+
+<p>
+<label for="comment">Write your comment:</label> <br />
+<textarea name="comment" placeholder="Write your thoughts on this recipe..." 
+id="comment" rows="5" cols="70" minlength="10" maxlength="2000" required>
+{% if comment %}{{ comment.comment_text }}{% endif %}</textarea>
+<input type="hidden" name="recipe_id" value="{{ recipe.id }}" />
+</p>
+
+  <p>
+  Rate this recipe:
+  {% for i in range(1, 6) %}
+  <input type="radio" name="rating" id="rating{{i}}" value="{{i}}" 
+
+  {% if comment and comment.rating == i %}
+  checked
+  {% endif %}required/>
+
+  <label for="rating{{i}}">{{i}}</label>
+  {% endfor %}
+  </p>
+
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}" />
+  <input type="submit" value="Send" class="btn">
+
+  <br>
+  <br>
+  
+  {% endif %}
+
+  <br>
+
+<a href="/show_comments/{{ recipe.id }}">Browse comments</a>
+
+<br>
+<br>
+
+<a href="/recipes" class="btn">Back</a>
+
+</form>
+
+{% else %}
+
+<form action="/search_recipe" method="get">
+
+<h1>Recipe bank</h1>
+<br>
+<p>
+<label for="recipe_query">Search for:</label>
+{% if recipe_query %}
+
+<input type="text" placeholder="Title or username..." name="recipe_query" id="recipe_query" value="{{ recipe_query }}" />
+
+{% else %}
+
+<input type="text" placeholder="Title or username..." name="recipe_query" id="recipe_query"/>
+
+{% endif %}
+
+<input type="submit" value="Search" class="btn">
+
+</p>
+<br>
+
+</form>
+
+{% if recipe_query %}
+
+<a href="/recipes" class="btn">Back</a>
+
+<h2>Search results:</h2>
+
+{% if results %}
+
+<ul class="search-results">
+
+{% for result in results %}
+
+<a href="/recipe/{{ result.id }}">
+{{ result.title }}
+</a>
+
+<p>
+From user: <a href="/user/{{ result.user_id }}">{{ result.username }} </a> ({{ result.sent_at }})
+</p>
+
+<hr>
+
+<br>
+
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+<p>No results found.</p>
+
+{% endif %}
+
+{% elif not recipe_query %}
+
+<a href="/" class="btn-menu">Back to menu</a>
+
+{% if recipes %}
+
+{% for recipe in recipes %}
+<div>
+<div>
+
+<a href="/recipe/{{ recipe.id }}">
+{{ recipe.title }}
+</a>
+
+<br>
+<br>
+
+<small>From user: <a href="/user/{{ recipe.user_id }}">{{ recipe.username }} </a> ({{ recipe.sent_at }})</small>
+
+</div>
+<br>
+
+<hr>
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p>No added recipes yet.</p>
+
+{% endif %}
+
+{% endif %}
+
+<p>
+
+{% if recipe_query %}
+
+  {% if page > 1 %}
+
+    <a href="/search_recipe/{{ page - 1 }}?recipe_query={{ recipe_query }}">&lt;&lt;</a>
+
+  {% endif %}
+
+  Page {{ page }}/{{ page_count }}
+
+  {% if page < page_count %}
+
+    <a href="/search_recipe/{{ page + 1 }}?recipe_query={{ recipe_query }}">&gt;&gt;</a>
+
+  {% endif %}
+
+{% else %}
+
+  {% if page > 1 %}
+
+    <a href="/recipes/{{ page - 1 }}">&lt;&lt;</a>
+
+  {% endif %}
+
+  Page {{ page }}/{{ page_count }}
+
+  {% if page < page_count %}
+
+    <a href="/recipes/{{ page + 1 }}">&gt;&gt;</a>
+
+  {% endif %}
+  
+{% endif %}
+
+</p>
+
+{% endif %}
+
+{% endblock %}
+
+<hr />
