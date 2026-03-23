@@ -7,7 +7,7 @@ This web application has 5 different flaws from the OWASP top ten list security 
 <br>
 
 > [!IMPORTANT]
-> Please make sure, that you have *python3* and *Poetry* installed. See instructions for Poetry installation [here](https://python-poetry.org/docs/)
+> Please make sure, that you have *Python3* installed.
 <br><br>
 
 **1. Clone the repository:**
