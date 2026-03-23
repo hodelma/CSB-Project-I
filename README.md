@@ -32,7 +32,7 @@ source venv/bin/activate
 pip install flask
 ```
 >[!NOTE]
->The project operates with SQLite, so there is no need for setting up your own PostgreSQL or any other database. The database is initialized automatically. 
+>Uses SQLite with automatic initialization — no external database needed
 
 **5. Create database:**
 ```bash
