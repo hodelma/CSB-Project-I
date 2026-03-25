@@ -56,7 +56,9 @@ def add_recipe():
     diets = recipes.get_diets()
 
     if request.method == "POST":
-        check_csrf()
+        #Flaw: CSRF vulnerability which means that no token validation allows cross-site request forgery
+        #Fix: Uncomment to enable CSRF protection
+        #check_csrf()
         instructions = request.form.get("instructions", "").strip()
         title = request.form.get("title", "").strip()
         type_id = int(request.form.get("type"))
@@ -133,7 +135,9 @@ def edit_recipe(recipe_id):
         type=type_id, diets_id=diets_id)
 
     if request.method == "POST":
-        check_csrf()
+        #Flaw: CSRF vulnerability which means that no token validation allows cross-site request forgery
+        #Fix: Uncomment to enable CSRF protection
+        #check_csrf()
         title = request.form.get("title", "").strip()
         instructions = request.form.get("instructions", "").strip()
         type_id = int(request.form.get("type"))
@@ -177,7 +181,9 @@ def delete_recipe(recipe_id):
         return render_template("remove_recipe.html", recipe=recipe)
 
     if request.method == "POST":
-        check_csrf()
+        #Flaw: CSRF vulnerability which means that no token validation allows cross-site request forgery
+        #Fix: Uncomment to enable CSRF protection
+        #check_csrf()
 
         if "continue" in request.form:
             recipes.remove_recipe(recipe_id)
@@ -343,7 +349,9 @@ def add_comment():
         flash("You need to log in to add a comment")
         return redirect("/")
 
-    check_csrf()
+    #Flaw: CSRF vulnerability which means that no token validation allows cross-site request forgery
+    #Fix: Uncomment to enable CSRF protection
+    #check_csrf()
     comment = request.form.get("comment", "").strip()
     recipe_id = request.form.get("recipe_id")
     rating = int(request.form.get("rating"))
@@ -411,7 +419,9 @@ def edit_comment(comment_id):
     if request.method == "GET":
         return render_template("edit_comment.html", comment=comment, recipe_id=recipe_id)
 
-    check_csrf()
+    #Flaw: CSRF vulnerability which means that no token validation allows cross-site request forgery
+    #Fix: Uncomment to enable CSRF protection
+    #check_csrf()
     text = request.form.get("comment", "").strip()
     rating = int(request.form.get("rating"))
     errors = []
@@ -448,7 +458,9 @@ def delete_comment(comment_id):
         return render_template("remove_comment.html", comment=comment)
 
     if request.method == "POST":
-        check_csrf()
+        #Flaw: CSRF vulnerability which means that no token validation allows cross-site request forgery
+        #Fix: Uncomment to enable CSRF protection
+        #check_csrf()
 
         if "continue" in request.form:
             recipes.remove_comment(comment_id, recipe_id)
