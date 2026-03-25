@@ -6,6 +6,15 @@ This project builds upon and further develops my previous recipe application pro
 This web application has CSRF vulnerability and 4 different flaws from the OWASP top ten list (2017) security flaws on purpose. The flaws are pointed out in the project and the steps to fix them are provided as well.
 <br><br>
 
+**The flaws I have chosen for this project:**
+<br>
+- Flaw 1: Cross-Site Request Forgery (CSRF)
+- Flaw 2: A7:2017-Cross-Site Scripting (XSS)
+- Flaw 3: A1:2017-Injection
+- Flaw 4: A2:2017-Broken Authentication
+- Flaw 5: A5:2017-Broken Access Control
+<br><br>
+
 ## Installation instructions
 <br>
 
