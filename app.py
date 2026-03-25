@@ -267,11 +267,19 @@ def create_account():
         if len(username) > 15:
             errors.append("ERROR: Username too long (max 15 characters)")
 
-        if not password1 or len(password1) > 50 or len(password1) < 8:
+        if not password1 or len(password1) > 50:
             errors.append("ERROR: Password must be 8-50 characters")
 
-        if not password2 or len(password2) > 50 or len(password2) < 8:
+        if not password2 or len(password2) > 50:
             errors.append("ERROR: Password confirmation must be 8-50 characters")
+
+        #Flaw: removed min password length requirement and now allowing weak passwords
+        #Fix: force minimum password length so uncomment the rows below
+        #if not password1 or len(password1) > 50 or len(password1) < 8:
+        #    errors.append("ERROR: Password must be 8-50 characters")
+
+        #if not password2 or len(password2) > 50 or len(password2) < 8:
+        #    errors.append("ERROR: Password confirmation must be 8-50 characters")
 
         if password1 != password2:
             errors.append("ERROR: Passwords do not match")
