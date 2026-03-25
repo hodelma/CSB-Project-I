@@ -125,8 +125,14 @@ def edit_recipe(recipe_id):
 
     recipe = recipes.get_recipe(recipe_id)
 
-    if recipe["user_id"] != session["user_id"]:
-        abort(403)
+    #Flaw: commented out ownership checks which allows editing/deleting other people's recipes and comments
+
+    #if recipe["user_id"] != session["user_id"]:
+    #    abort(403)
+
+    #Fix: uncomment the ownership validation checks
+    #if recipe["user_id"] != session["user_id"]:
+    #    abort(403)
 
     types = recipes.get_types()
     diets = recipes.get_diets()
@@ -179,8 +185,14 @@ def delete_recipe(recipe_id):
 
     recipe = recipes.get_recipe(recipe_id)
 
-    if recipe["user_id"] != session["user_id"]:
-        abort(403)
+    #Flaw: commented out ownership checks which allows editing/deleting other people's recipes and comments
+
+    #if recipe["user_id"] != session["user_id"]:
+    #    abort(403)
+
+    #Fix: uncomment the ownership validation checks
+    #if recipe["user_id"] != session["user_id"]:
+    #    abort(403)
 
     if request.method == "GET":
         return render_template("remove_recipe.html", recipe=recipe)
@@ -424,8 +436,14 @@ def edit_comment(comment_id):
 
     comment = recipes.get_comment(comment_id)
 
-    if comment["user_id"] != session["user_id"]:
-        abort(403)
+    #Flaw: commented out ownership checks which allows editing/deleting other people's recipes and comments
+
+    #if comment["user_id"] != session["user_id"]:
+    #    abort(403)
+
+    #Fix: uncomment the ownership validation checks
+    #if comment["user_id"] != session["user_id"]:
+    #    abort(403)
 
     recipe_id = comment["recipe_id"]
 
@@ -462,8 +480,14 @@ def delete_comment(comment_id):
 
     comment = recipes.get_comment(comment_id)
 
-    if comment["user_id"] != session["user_id"]:
-        abort(403)
+    #Flaw: commented out ownership checks which allows editing/deleting other people's recipes and comments
+
+    #if comment["user_id"] != session["user_id"]:
+    #    abort(403)
+
+    #Fix: uncomment the ownership validation checks
+    #if comment["user_id"] != session["user_id"]:
+    #    abort(403)
 
     recipe_id = comment["recipe_id"]
 
