@@ -28,9 +28,14 @@ def after_request(response):
 
 @app.template_filter()
 def show_lines(recipe_content):
-    recipe_content = str(markupsafe.escape(recipe_content))
+    recipe_content = str(recipe_content)
     recipe_content = recipe_content.replace("\n", "<br />")
     return markupsafe.Markup(recipe_content)
+    #Flaw: Removed html escaping which allows xss (cross-site scripting) in recipe content display
+    #Fix: Re-add markupsafe.escape() to sanitize contents
+    #recipe_content = str(markupsafe.escape(recipe_content))
+    #recipe_content = recipe_content.replace("\n", "<br />")
+    #return markupsafe.Markup(recipe_content)
 
 
 @app.route("/")
