@@ -19,7 +19,7 @@ This web application has CSRF vulnerability and 4 different flaws from the OWASP
 <br>
 
 > [!IMPORTANT]
-> Please make sure, that you have *Python3* installed.
+> Please make sure, that you have *Python3* and python-dotenv package installed. If dotenv is not installed, follow step 4 regarding dotenv.
 <br><br>
 
 **1. Clone the repository:**
@@ -40,9 +40,10 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-**4. Install ```flask``` library:**
+**4. Install ```flask``` library (and dotenv if not installed):**
 ```bash
 pip install flask
+pip install python-dotenv
 ```
 >[!NOTE]
 >Uses SQLite with automatic initialization — no external database needed
