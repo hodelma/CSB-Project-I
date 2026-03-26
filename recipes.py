@@ -12,8 +12,13 @@ def comment_count(recipe_id):
 
 
 def search_count(recipe_query):
-    sql = """SELECT COUNT(*) count FROM recipes WHERE title LIKE ?"""
-    return db.query(sql, ["%" + recipe_query + "%"])[0]
+    #Flaw: using string concatenation instead of parameterized query allows sql injection
+    sql = """SELECT COUNT(*) count FROM recipes WHERE title LIKE '%""" + recipe_query + """%'"""
+    return db.query(sql)[0]
+    
+    #Fix: use parameterized query to prevent sql injection
+    #sql = """SELECT COUNT(*) count FROM recipes WHERE title LIKE ?"""
+    #return db.query(sql, ["%" + recipe_query + "%"])[0]
 
 
 def get_recipes(page, page_size):
