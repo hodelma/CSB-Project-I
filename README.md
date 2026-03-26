@@ -54,8 +54,13 @@ sqlite3 database.db < schema.sql
 sqlite3 database.db < init.sql
 ```
 
+>[!TIP]
+>Before running the Flask app, initialize and populate the database with seed data:
+>```bash
+>python seed.py
 
-**6. Execute flask-app:** <br>
+
+**6. Run flask-app:** <br>
 
 Normal mode:
 ```bash
